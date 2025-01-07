@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^13.0.0"
+  },
+  "bin": {
+    "gendiff": "bin/gendiff.js"
   }
 }
