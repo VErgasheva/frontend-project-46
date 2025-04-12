@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import path from 'node:path'; 
-import { parseFile } from '../index.js';
 import { Command } from 'commander';
 import parseFile from './src/parser.js';
 
