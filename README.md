@@ -1,2 +1,15 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/VErgasheva/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/VErgasheva/frontend-project-46/actions)
+Вычислитель отличий
+
+Установка
+Склонируйте репозиторий и установите зависимости:
+bash
+npm install
+
+Использование
+Запустите команду для сравнения двух JSON-файлов:
+bash
+node gendiff.js
+
+Пример работы
+https://asciinema.org/a/2HaZTj0gvT5VzxOIM6YTDXs9r
+

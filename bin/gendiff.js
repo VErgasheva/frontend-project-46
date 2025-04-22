@@ -1,27 +1,22 @@
 #!/usr/bin/env node
 
-import path from 'node:path'; 
 import { Command } from 'commander';
-import parseFile from './src/parser.js';
+import { parseFile } from '../src/parsers.js';
+import genDiff from '../src/genDiff.js';
 
 const program = new Command();
 
 program
-  .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
-  .version('1.0.0') 
-  .arguments('<filepath1> <filepath2>')
+  .version('0.0.1')
   .option('-f, --format [type]', 'output format')
-  .helpOption('-h, --help', 'display help for command')
+  .arguments('<filepath1> <filepath2>')
   .action((filepath1, filepath2) => {
-    const absolutePath1 = path.resolve(process.cwd(), filepath1);
-    const absolutePath2 = path.resolve(process.cwd(), filepath2);
-
-    const data1 = parseFile(absolutePath1);
-    const data2 = parseFile(absolutePath2);
-
-    console.log('File 1:', data1);
-    console.log('File 2:', data2);
+    const obj1 = parseFile(filepath1);
+    const obj2 = parseFile(filepath2);
+    const diff = genDiff(obj1, obj2);
+    console.log(diff);
   });
 
-program.parse();
+program.parse(process.argv);
+
