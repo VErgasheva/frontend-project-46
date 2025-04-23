@@ -6,7 +6,7 @@ const genDiff = require('../src/genDiff.js');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getFixturePath = (__filename) => path.join(__dirname, '..', '__fixtures', filename);
+const getFixturePath = (__filename) => path.join(__dirname, '..', '__fixtures', __filename);
 
 test('gendiff flat JSON', () => {
   const file1 = parseFile(getFixturePath('file1.json'));
