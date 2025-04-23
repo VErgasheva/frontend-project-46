@@ -1,12 +1,12 @@
-import { fileURLToPath } from 'url';
-import path from 'path';
-import { parseFile } from '../src/parsers.js';
-import genDiff from '../src/genDiff.js';
+const { fileURLToPath } = require('url');
+const path = require('path');
+const { parseFile } = require('../src/parsers.js');
+const genDiff = require('../src/genDiff.js');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures', filename);
 
 test('gendiff flat JSON', () => {
   const file1 = parseFile(getFixturePath('file1.json'));
