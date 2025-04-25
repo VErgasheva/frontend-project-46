@@ -1,23 +1,34 @@
-const { fileURLToPath } = require('url');
-const path = require('path');
-const { parseFile } = require('../src/parsers.js');
-const genDiff = require('../src/genDiff.js');
+import { fileURLToPath } from 'url';
+import { readFileSync } from 'fs';
+import genDiff from '../index.js';
+import parseContent from '../src/parsers.js';
+import { file11Fixture } from '../__fixtures__/objs.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const getFixturePath = (__filename) => path.join(__dirname, '..', '__fixtures', __filename);
+const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures', filename);
 
-test('gendiff flat JSON', () => {
-  const file1 = parseFile(getFixturePath('file1.json'));
-  const file2 = parseFile(getFixturePath('file2.json'));
-  const expected = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`;
-  expect(genDiff(file1, file2)).toBe(expected);
+test.each([
+  'stylish',
+  'plain',
+  'json',
+])('genDiff %s', (format) => {
+  expect(genDiff(
+    getFixturePath('file11.json'),
+    getFixturePath('file22.json'),
+    format,
+  )).toEqual(readFileSync(getFixturePath(`result_${format}.txt`), 'utf-8'));
+});
+
+test('parseContent yaml', () => {
+  expect(
+    parseContent(readFileSync(getFixturePath('file11.yml')), 'yaml'),
+  ).toEqual(file11Fixture);
+});
+
+test('parseContent json', () => {
+  expect(
+    parseContent(readFileSync(getFixturePath('file11.json')), 'json'),
+  ).toEqual(file11Fixture);
 });
