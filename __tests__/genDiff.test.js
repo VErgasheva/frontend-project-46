@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url';
+//import { fileURLToPath } from 'url';
 import { readFileSync } from 'fs';
 import genDiff from '../index.js';
 import parseContent from '../src/parsers.js';
