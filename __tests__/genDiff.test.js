@@ -4,7 +4,7 @@ import genDiff from '../index.js';
 import parseContent from '../src/parsers.js';
 import { file11Fixture } from '../__fixtures__/objs.js';
 
-const __filename = fileURLToPath(import.meta.url);
+//const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures', filename);
