@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import yaml from 'js-yaml';
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
 
 const parseFile = (filepath) => {
   const ext = path.extname(filepath).toLowerCase();
@@ -15,5 +15,6 @@ const parseFile = (filepath) => {
   throw new Error(`Unknown file extension: ${ext}`);
 };
 
-export { parseFile };
+module.exports = { parseFile };
+
 
