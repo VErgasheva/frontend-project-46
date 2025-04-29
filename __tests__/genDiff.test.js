@@ -1,7 +1,7 @@
 //import { fileURLToPath } from 'url';
 import { readFileSync } from 'fs';
-import genDiff from '../index.js';
-import parseContent from '../src/parsers.js';
+import { genDiff } from '../index.js';
+import { parseContent } from '../src/parsers.js';
 import { file11Fixture } from '../__fixtures__/objs.js';
 
 //const __filename = fileURLToPath(import.meta.url);
