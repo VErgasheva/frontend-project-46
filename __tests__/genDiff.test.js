@@ -4,8 +4,6 @@ const { genDiff } = require('../index.js');
 const { parseContent } = require('../src/parsers.js');
 const { file11Fixture } = require('../fixtures/objs.js');
 
-const __dirname = path.dirname(__filename);
-
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures', filename);
 
 test.each([
@@ -22,12 +20,13 @@ test.each([
 
 test('parseContent yaml', () => {
   expect(
-    parseContent(fs.readFileSync(getFixturePath('file11.yml')), 'yaml'),
+    parseContent(fs.readFileSync(getFixturePath('file11.yml')), 'utf-8'),  
   ).toEqual(file11Fixture);
 });
 
 test('parseContent json', () => {
   expect(
-    parseContent(fs.readFileSync(getFixturePath('file11.json')), 'json'),
+    parseContent(fs.readFileSync(getFixturePath('file11.json')), 'utf-8'),  
   ).toEqual(file11Fixture);
 });
+
