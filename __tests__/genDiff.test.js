@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const genDiff = require('../src/index.js');  
+const genDiff = require('../src/genDiff.js');  
 const { parseContent } = require('../src/parsers.js');
-const { file11Fixture } = require('../fixtures/objs.js');
+const { file11Fixture } = require('../__fixtures__/objs.js');
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 
