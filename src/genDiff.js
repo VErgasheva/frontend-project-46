@@ -44,4 +44,4 @@ const genDiff = (obj1, obj2) => {
   });
 };
 
-export default genDiff;
+module.exports = genDiff;
