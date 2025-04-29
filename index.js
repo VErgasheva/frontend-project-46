@@ -1,2 +1,2 @@
-const genDiff = require('./src/index.js');
+const genDiff = require('./src/genDiff.js');
 module.exports = genDiff;
