@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const parseFile = (filepath) => {
+const parseContent = (filepath) => {
   const ext = path.extname(filepath).toLowerCase();
   const data = fs.readFileSync(filepath, 'utf-8');
 
@@ -15,7 +15,7 @@ const parseFile = (filepath) => {
   throw new Error(`Unknown file extension: ${ext}`);
 };
 
-module.exports = { parseFile };
+module.exports = { parseContent };
 
 
 
