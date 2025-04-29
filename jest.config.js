@@ -1,3 +1,5 @@
 export default {
-    transform: {},
-  };
+  transform: {},
+  extensionsToTreatAsEsm: ['.js'],
+  testEnvironment: 'node',
+};
