@@ -20,13 +20,12 @@ test.each([
 
 test('parseContent yaml', () => {
   expect(
-    parseContent(fs.readFileSync(getFixturePath('file11.yml')), 'utf-8'),  
+    parseContent(fs.readFileSync(getFixturePath('file11.yml'), 'utf-8')),
   ).toEqual(file11Fixture);
 });
 
 test('parseContent json', () => {
   expect(
-    parseContent(fs.readFileSync(getFixturePath('file11.json')), 'utf-8'),  
+    parseContent(fs.readFileSync(getFixturePath('file11.json'), 'utf-8')),
   ).toEqual(file11Fixture);
 });
-
