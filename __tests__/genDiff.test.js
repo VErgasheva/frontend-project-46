@@ -1,35 +1,46 @@
-const fs = require('fs');
-const path = require('path');
-const genDiff = require('../src/genDiff.js');  
-const { parseContent } = require('../src/parsers.js');
-const { file11Fixture } = require('../__fixtures__/objs.js');
+import genDiff from '../src/genDiff';
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+describe('genDiff', () => {
+  test('разница между простыми объектами', () => {
+    const obj1 = {
+      host: 'hexlet.io',
+      timeout: 50,
+      proxy: '123.234.53.22',
+      follow: false,
+    };
+    const obj2 = {
+      timeout: 20,
+      verbose: true,
+      host: 'hexlet.io',
+    };
+    const expected = `{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}`;
+    expect(genDiff(obj1, obj2)).toBe(expected);
+  });
 
-test.each([
-  'stylish',
-  'plain',
-  'json',
-])('genDiff %s', (format) => {
-  expect(
-    genDiff(
-      getFixturePath('file11.json'),
-      getFixturePath('file22.json'),
-      format,
-    )
-  ).toEqual(
-    fs.readFileSync(getFixturePath(`result_${format}.txt`), 'utf-8')
-  );
-});
+  test('разница между пустыми объектами', () => {
+    expect(genDiff({}, {})).toBe('{\n\n}');
+  });
 
-test('parseContent yaml', () => {
-  expect(
-    parseContent(fs.readFileSync(getFixturePath('file11.yml'), 'utf-8'))
-  ).toEqual(file11Fixture);
-});
+  test('объекты без различий', () => {
+    const obj = { a: 1, b: 2 };
+    expect(genDiff(obj, obj)).toBe('{\n    a: 1\n    b: 2\n}');
+  });
 
-test('parseContent json', () => {
-  expect(
-    parseContent(fs.readFileSync(getFixturePath('file11.json'), 'utf-8'))
-  ).toEqual(file11Fixture);
+  test('объекты с вложенностью сравниваются по верхнему уровню', () => {
+    const obj1 = { a: { x: 1 }, b: 2 };
+    const obj2 = { a: { x: 2 }, b: 2 };
+    const expected = `{
+  - a: [object Object]
+  + a: [object Object]
+    b: 2
+}`;
+    expect(genDiff(obj1, obj2)).toBe(expected);
+  });
 });

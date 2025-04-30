@@ -1,4 +1,4 @@
-const file22Fixture = {
+export const file22Fixture = {
   common: {
     follow: false,
     setting1: 'Value 1',
@@ -30,7 +30,7 @@ const file22Fixture = {
   },
 };
 
-const file11Fixture = {
+export const file11Fixture = {
   common: {
     setting1: 'Value 1',
     setting2: 200,
@@ -55,9 +55,4 @@ const file11Fixture = {
       id: 45,
     },
   },
-};
-
-module.exports = {
-  file22Fixture,
-  file11Fixture,
 };

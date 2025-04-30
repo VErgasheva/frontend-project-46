@@ -1,8 +1,8 @@
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
+import fs from 'fs';
+import path from 'path';
+import yaml from 'js-yaml';
 
-const parseContent = (filepath) => {
+export const parseContent = (filepath) => {
   const ext = path.extname(filepath).toLowerCase();
   const data = fs.readFileSync(filepath, 'utf-8');
   if (ext === '.json') {
@@ -14,8 +14,7 @@ const parseContent = (filepath) => {
   throw new Error(`Unknown file extension: ${ext}`);
 };
 
-module.exports = { parseContent };
-
+export default parseContent;
 
 
 
