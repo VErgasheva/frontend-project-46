@@ -73,4 +73,13 @@ describe('genDiff', () => {
 }`;
     expect(genDiff(obj1, obj2)).toBe(expected);
   });
+  test('json format', () => {
+    const obj1 = parseContent(getFixturePath('file11.json'));
+    const obj2 = parseContent(getFixturePath('file22.json'));
+    const result = genDiff(obj1, obj2, 'json');
+    expect(() => JSON.parse(result)).not.toThrow();
+    const diff = JSON.parse(result);
+    expect(Array.isArray(diff)).toBe(true);
+    expect(diff.some((node) => node.key === 'common')).toBe(true);
+  });
 });
